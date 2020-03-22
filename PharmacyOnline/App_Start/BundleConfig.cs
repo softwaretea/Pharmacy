@@ -20,11 +20,28 @@ namespace PharmacyOnline
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/jquery-3.3.1.min.js", "~/Scripts/jquery-ui.js",
+                      "~/Scripts/popper.min.js", "~/Scripts/owl.carousel.min.js",
+                      "~/Scripts/owl.carousel.min.js", "~/Scripts/jquery.magnific-popup.min.js",
+                      "~/Scripts/aos.js", "~/Scripts/js/main.js", "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+
+
+
+
+
+
+
+
+
+
+
+
+                    bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/magnific-popup.css", "~/Content/jquery-ui.css",
+                      "~/Content/owl.carousel.min.css", "~/Content/owl.theme.default.min.css",
+                      "~/Content/aos.css", "~/Content/style.css", "~/fonts/icomoon/style.css"));
         }
     }
 }
