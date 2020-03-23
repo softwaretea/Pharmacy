@@ -127,6 +127,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Pharmacy.mdf" />
+    <Content Include="App_Data\Pharmacy_log.ldf">
+      <DependentUpon>Pharmacy.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\aos.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap\bootstrap-grid.css" />
@@ -193,7 +197,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
