@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pro_TradName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pro_prices" Type="Double" Nullable="false" />
+    <Property Name="pro_quantity" Type="Int32" Nullable="false" />
+    <Property Name="pro_company" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pro_pharmacology" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="pro_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="pro_GenericName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="pro_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="pharmacyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="products" EntityType="Self.product" />
+  </EntityContainer>
+</Schema>
