@@ -1,0 +1,75 @@
+﻿@model IEnumerable<PahramcyOnline.Models.product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_TradName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_prices)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_pharmacology)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_GenericName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pro_image)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_TradName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_prices)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_company)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_pharmacology)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_GenericName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pro_image)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
