@@ -123,10 +123,10 @@ namespace PahramcyOnline.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult Search(string Name)
+        public ActionResult Search(string name)
 
         {
-            var product = db.products.Where(c => c.pro_TradName == Name);
+            var product = db.products.Where(c => c.pro_TradName == name);
             if (product == null)
                 return HttpNotFound();
 
