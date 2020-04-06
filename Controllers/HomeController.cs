@@ -15,7 +15,7 @@ namespace PahramcyOnline.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            
 
             return View();
         }
@@ -26,6 +26,7 @@ namespace PahramcyOnline.Controllers
 
             return View();
         }
-        
+       
+
     }
 }

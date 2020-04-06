@@ -262,3 +262,6 @@ C:\Users\kc\Documents\GitHub\Pharmacy\obj\Debug\PahramcyOnline.csprojAssemblyRef
 C:\Users\kc\Documents\GitHub\Pharmacy\obj\Debug\PahramcyOnline.csproj.CopyComplete
 C:\Users\kc\Documents\GitHub\Pharmacy\obj\Debug\PahramcyOnline.dll
 C:\Users\kc\Documents\GitHub\Pharmacy\obj\Debug\PahramcyOnline.pdb
+E:\level 3\SW2\Project\Pharmacy\obj\Debug\PahramcyOnline.csprojAssemblyReference.cache
+E:\level 3\SW2\Project\Pharmacy\obj\Debug\PahramcyOnline.dll
+E:\level 3\SW2\Project\Pharmacy\obj\Debug\PahramcyOnline.pdb

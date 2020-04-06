@@ -44,6 +44,7 @@ namespace PahramcyOnline
             bundles.Add(new StyleBundle("~/Content/Login/css").Include(
                       "~/Content/Login/index.css"
                       ));
+  
         }
     }
 }
