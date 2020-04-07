@@ -48,7 +48,7 @@ namespace PahramcyOnline.Controllers
             { 
                 //return RedirectToAction("Index", controllerName: "productsController");
                 //return RedirectToAction("Index", "ProductsController");
-                return RedirectToAction("AdminHome","Admin");
+                return RedirectToAction("AdminHome","Product");
 
                
                 

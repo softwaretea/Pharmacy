@@ -128,7 +128,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -321,7 +320,7 @@
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\slick.min.js" />
-    <None Include="Views\Admin\AdminHome.cshtml" />
+    <None Include="Views\Product\AdminHome.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

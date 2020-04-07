@@ -132,5 +132,9 @@ namespace PahramcyOnline.Controllers
 
             return View(product);
         }
+        public ActionResult AdminHome()
+        {
+            return View();
+        }
     }
 }
