@@ -7,6 +7,7 @@
 }
 
 <h2>Delete</h2>
+@* Should be Redesgined *@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -79,7 +80,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
