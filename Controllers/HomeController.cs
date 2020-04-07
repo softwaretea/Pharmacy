@@ -30,7 +30,8 @@ namespace PahramcyOnline.Controllers
         [HttpGet]
         public ActionResult Login_get()
         {
-            ViewBag.Message = "Login";
+
+
 
             return View();
 
@@ -39,20 +40,26 @@ namespace PahramcyOnline.Controllers
         [ActionName("Login")]
 
         [HttpPost]
-        public ActionResult Login_post(String Email, int Password)
+        public ActionResult Login_post(String Email, String Password)
         {
 
 
-            if (Email == "admin@Pharmacy.com" && Password == 123456)
-            {
+            if (Email.Equals("admin@Pharmacy.com") && Password.Equals("123456"))
+            { 
                 //return RedirectToAction("Index", controllerName: "productsController");
                 //return RedirectToAction("Index", "ProductsController");
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminHome","Admin");
+
+               
+                
 
             }
             else
             {
-                return RedirectToAction("Index");
+                ViewBag.Message = "not matched";
+
+
+                return View();
 
             }
 

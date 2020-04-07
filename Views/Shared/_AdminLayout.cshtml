@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - Pharma &mdash; SoftWare Tea</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Login/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*<link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">*@
+
+
+</head>
+
+
+
+<body>
+    <div class="site-wrap">
+
+
+        <div class="site-navbar py-2">
+
+            <div class="search-wrap">
+                <!-- the search icone -->
+                <div class="container">
+                    <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
+                    <form action="#" method="post">
+                        <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+                    </form>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="logo">
+                        <!-- The logo of website -->
+                        <div class="site-logo">
+                            <a href="@Url.Action("AdminHome")" class="js-logo-clone">Pharma</a>
+                        </div>
+                    </div>
+                    <div class="main-nav d-none d-lg-block">
+                        <nav class="site-navigation text-right text-md-center" role="navigation">
+                            <ul class="site-menu js-clone-nav d-none d-lg-block">
+                                <li class="active"><a href="@Url.Action("AdminHome")">Home</a></li>
+                                <li><a href="@Url.Action("AdminHome")">My Profile</a></li>
+
+
+
+                                <li class="has-children">
+                                    <a href="#">Mangement</a>
+                                    <ul class="dropdown">
+                                        <li class="has-children">
+                                            <a href="#">Add New Product</a>
+                                            <a href="#">List Product</a>
+                                            <a href="#">Change Product Info</a>
+
+
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="#"><a href="@Url.Action("AdminHome")">Check Orders</a></li>
+                                <li class="#"><a href="@Url.Action("AdminHome")">medicine expire date</a></li>
+                                <li class="#"><a href="@Url.Action("Index","Home")">Log out</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="icons">
+                        <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
+
+                        <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none">
+                            <span class="icon-menu"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+
+
+  
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/Login/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

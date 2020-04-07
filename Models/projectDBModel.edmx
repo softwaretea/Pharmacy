@@ -86,6 +86,10 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams>
+      <Diagram DiagramId="080e46fe65414ed6adf040cb3c0ebc01" Name="Diagram1">
+        <EntityTypeShape EntityType="pharmacyModel.product" Width="1.5" PointX="3.375" PointY="0.625" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
   </Designer>
 </edmx:Edmx>

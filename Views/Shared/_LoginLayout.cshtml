@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - Pharma &mdash; SoftWare Tea</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Login/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*<link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">*@
+
+
+</head>
+
+
+
+<body>
+    <div class="site-wrap">
+        <div class="site-navbar py-2">
+
+            <div class="search-wrap">
+                <div class="container">
+                    <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
+                    <form action="#" method="post">
+                        <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+                    </form>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="logo">
+                        <div class="site-logo">
+                            <a href="@Url.Action("Index")" class="js-logo-clone">Pharma</a>
+                        </div>
+                    </div>
+                   
+                  
+                </div>
+            </div>
+        </div>
+        @RenderBody()
+
+
+        
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/Login/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
