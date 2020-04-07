@@ -105,7 +105,7 @@
         </svg>
     </div>
 
-    <form onSubmit="return false;" method="POST" class="form login">
+    <form @*onSubmit="return false;"*@ method="POST" class="form login">
         <div class="form__field form__field--email">
             <label class="label label--icon" for="login__email">
                 <svg class="icon">
@@ -147,13 +147,13 @@
         </div>
 
         <div class="login-actions-container">
-            <div class="form__field form__field--remember-me">
+            @*<div class="form__field form__field--remember-me">
                 <label class="label label--remember-me" for="login__remember-me">
                     <input id="login__remember-me" type="checkbox">
                     <span class="checkmark"></span>
                     <span class="remember-me-text">Remember me</span>
                 </label>
-            </div>
+            </div>*@
 
             @*<a class="forgot-password" href="#">Forgot Password?</a>*@
 

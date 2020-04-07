@@ -12,7 +12,7 @@ namespace PahramcyOnline.Controllers
 {
     public class productsController : Controller
     {
-        private pharmacyEntities db = new pharmacyEntities();
+        private  pharmacyEntities db = new pharmacyEntities();
 
         // GET: products
         public ActionResult Index()
