@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ namespace PahramcyOnline.Controllers
         {
             return View();
         }
+         
         [HttpPost]
         public ActionResult login( String Email, int Password)
         {
@@ -30,9 +32,10 @@ namespace PahramcyOnline.Controllers
             {
                 return View(login);
             }
-
+            
 
         }
 
     }
 }
+*/
