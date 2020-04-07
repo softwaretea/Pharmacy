@@ -15,7 +15,7 @@ namespace PahramcyOnline.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            
 
             return View();
         }
@@ -26,6 +26,38 @@ namespace PahramcyOnline.Controllers
 
             return View();
         }
-        
+        [ActionName("Login")]
+        [HttpGet]
+        public ActionResult Login_get()
+        {
+            ViewBag.Message = "Login";
+
+            return View();
+
+        }
+
+        [ActionName("Login")]
+
+        [HttpPost]
+        public ActionResult Login_post(String Email, int Password)
+        {
+
+
+            if (Email == "admin@Pharmacy.com" && Password == 123456)
+            {
+                //return RedirectToAction("Index", controllerName: "productsController");
+                //return RedirectToAction("Index", "ProductsController");
+                return RedirectToAction("Index");
+
+            }
+            else
+            {
+                return RedirectToAction("Index");
+
+            }
+
+
+        }
+
     }
 }
