@@ -10,7 +10,7 @@ using PahramcyOnline.Models;
 
 namespace PahramcyOnline.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
         private pharmacyEntities db = new pharmacyEntities();
 
