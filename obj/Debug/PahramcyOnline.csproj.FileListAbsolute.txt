@@ -262,7 +262,6 @@ C:\Users\kc\Documents\GitHub\Pharmacy\obj\Debug\PahramcyOnline.csprojAssemblyRef
 C:\Users\kc\Documents\GitHub\Pharmacy\obj\Debug\PahramcyOnline.csproj.CopyComplete
 C:\Users\kc\Documents\GitHub\Pharmacy\obj\Debug\PahramcyOnline.dll
 C:\Users\kc\Documents\GitHub\Pharmacy\obj\Debug\PahramcyOnline.pdb
-C:\Users\Rahma\Desktop\SW2\Pharmacy\obj\Debug\PahramcyOnline.csprojAssemblyReference.cache
 C:\Users\Rahma\Desktop\SW2\Pharmacy\obj\Debug\PahramcyOnline.csproj.CoreCompileInputs.cache
 C:\Users\Rahma\Desktop\SW2\Pharmacy\obj\Debug\PahramcyOnline.dll
 C:\Users\Rahma\Desktop\SW2\Pharmacy\obj\Debug\PahramcyOnline.pdb
@@ -354,3 +353,4 @@ C:\Users\Rahma\Desktop\SW2\Pharmacy\bin\Newtonsoft.Json.xml
 C:\Users\Rahma\Desktop\SW2\Pharmacy\bin\Antlr3.Runtime.pdb
 C:\Users\Rahma\Desktop\SW2\Pharmacy\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Rahma\Desktop\SW2\Pharmacy\obj\Debug\PahramcyOnline.csproj.CopyComplete
+C:\Users\Rahma\Desktop\SW2\Pharmacy\obj\Debug\PahramcyOnline.csprojAssemblyReference.cache
