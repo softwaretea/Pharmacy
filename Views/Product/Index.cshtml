@@ -66,7 +66,7 @@
                 @Html.DisplayFor(modelItem => item.pro_GenericName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.pro_image)
+                <img src="@Url.Content(item.pro_image)" width="50" height="50"/>
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

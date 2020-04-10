@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomizeProduct.cs" />
     <Compile Include="Models\product.cs">
       <DependentUpon>projectDBModel.tt</DependentUpon>
     </Compile>
@@ -252,6 +253,7 @@
     <Content Include="images\75429385_958926584463573_3881075617105444864_n.png" />
     <Content Include="images\89677695_2924673387625320_7593936340392083456_n.jpg" />
     <Content Include="images\89851111_565986950939382_2958392822312468480_n.png" />
+    <Content Include="images\92675570_255181699215531_912634839063068672_n.jpg" />
     <Content Include="images\bg_1.jpg" />
     <Content Include="images\bg_2.jpg" />
     <Content Include="images\hero_1.jpg" />
