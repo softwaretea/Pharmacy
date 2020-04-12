@@ -10,10 +10,10 @@
 @* Should be Redesgined *@
 
 <h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>product</h4>
+<div style="width:60%;height:55%;align-content:center;margin-left:100px;">
+    
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" style="width:60%;height:55%;align-content:center;margin-left:100px;">
         <dt>
             @Html.DisplayNameFor(model => model.pro_TradName)
         </dt>
@@ -75,7 +75,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.pro_image)
+            <img sre="@Url.Content(Model.pro_image)" width="50" height="50" />
+        </dd>
+        <dd style="width:40%;">
+            <input type="submit" value="Delete" class="btn btn-danger" />
         </dd>
 
     </dl>
@@ -84,8 +87,8 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+        <div class="form-actions no-color"style="width:60%;">
+            
             @Html.ActionLink("Back to List", "Index")
         </div>
     }

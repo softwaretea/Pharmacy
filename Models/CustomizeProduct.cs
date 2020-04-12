@@ -40,7 +40,7 @@ namespace PahramcyOnline.Models
         [Required]
         public string pro_GenericName { get; set; }
         [Display(Name = "Image")]
-        [Required]
+        
         public string pro_image { get; set; }
 
     }

@@ -47,11 +47,11 @@ namespace PahramcyOnline.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,pro_TradName,pro_prices,pro_quantity,pro_company,pro_pharmacology,pro_type,pro_GenericName")] product product,HttpPostedFileBase proImage)
+        public ActionResult Create([Bind(Include = "Id,pro_TradName,pro_prices,pro_quantity,pro_company,pro_pharmacology,pro_type,pro_GenericName,pro_image")] product product,HttpPostedFileBase proImage)
         {
             if (ModelState.IsValid)
             {
-                string path ="";
+                string path="";
                 if(proImage.FileName.Length>0)
                 {
                     path = "~/images/" + Path.GetFileName(proImage.FileName);
@@ -86,15 +86,22 @@ namespace PahramcyOnline.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,pro_TradName,pro_prices,pro_quantity,pro_company,pro_pharmacology,pro_type,pro_GenericName,pro_image")] product product)
+        public ActionResult Edit([Bind(Include = "Id,pro_TradName,pro_prices,pro_quantity,pro_company,pro_pharmacology,pro_type,pro_GenericName,pro_image")] product product, HttpPostedFileBase proImage)
         {
-            if (ModelState.IsValid)
+            string path = "";
+            if (proImage.FileName.Length > 0)
             {
+                path = "~/images/" + Path.GetFileName(proImage.FileName);
+                proImage.SaveAs(Server.MapPath(path));
+            }
+            product.pro_image = path;
+            var before = db.products.AsNoTracking().Where(x => x.Id == product.Id).ToList().FirstOrDefault();
+
+            
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
-            return View(product);
+            
         }
 
         // GET: products/Delete/5
