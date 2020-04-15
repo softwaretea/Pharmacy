@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PahramcyOnline.Models.product>
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Shop</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="@Url.Content(item.pro_image)" alt="@Url.Content(item.pro_TradName)" height="300" width="250">
+                <div class="caption">
+                    <p>
+                        <h3>@item.pro_TradName</h3>
+                    <p>
+                        @item.pro_prices
+                    </p>
+
+                    <br />
+
+                    <a href="@Url.Action("Index","Product", new { id = item.Id })" class="btn btn-primary px-4 py-2">
+                        Buy
+                    </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+

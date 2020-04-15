@@ -151,5 +151,21 @@ namespace PahramcyOnline.Controllers
         {
             return View();
         }
+       
+        public ActionResult Shop()
+        {
+            
+            return View(db.products.ToList());
+        }
+        /*
+        [HttpPost]
+        public ActionResult Shop(product product)
+        {
+
+
+            return RedirectToAction("Index");
+        }
+        */
     }
+
 }
