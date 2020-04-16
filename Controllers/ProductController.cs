@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using PahramcyOnline.Models;
 using System.IO;
+using PahramcyOnline.Controllers;
 
 namespace PahramcyOnline.Controllers
 {
@@ -18,7 +19,10 @@ namespace PahramcyOnline.Controllers
         // GET: products
         public ActionResult Index()
         {
-            return View(db.products.ToList());
+            if (Session["Email"] != null)
+                return View(db.products.ToList());
+            else
+                return RedirectToAction("Login", "Home");
         }
 
         // GET: products/Details/5
@@ -39,7 +43,10 @@ namespace PahramcyOnline.Controllers
         // GET: products/Create
         public ActionResult Create()
         {
-            return View();
+            if (Session["Email"] != null)
+                return View();
+            else
+                return RedirectToAction("Login", "Home");
         }
 
         // POST: products/Create

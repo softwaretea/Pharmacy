@@ -31,7 +31,7 @@ namespace PahramcyOnline.Controllers
         public ActionResult Login_get()
         {
 
-
+            Session["Email"] = "admin@Pharmacy.com";
 
             return View();
 
