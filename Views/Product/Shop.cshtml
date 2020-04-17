@@ -4,33 +4,54 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Shop</h2>
+    <div class="container">
 
-<div class="row">
-    @foreach (var item in Model)
-    {
 
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="@Url.Content(item.pro_image)" alt="@Url.Content(item.pro_TradName)" height="300" width="250">
-                <div class="caption">
-               <p>
-                        <h3>@item.pro_TradName</h3>
-                    <p>
-                        @item.pro_prices
-                    </p>
+        <div class="site-navbar py-2">
 
-                    <br />
+            <div class="d-flex align-items-lg-center justify-content-lg-around">
+                
+                @using(Html.BeginForm("Shop", "Product", FormMethod.Get))
+                {
 
-                    <a href="@Url.Action("Index","Product", new { id = item.Id })" class="btn btn-primary px-4 py-2">
-                        Buy
-                    </a>
-                 </p>
+                <input id="search"
+                       name="search"
+                       size="1"
+                       style="height:55px;"
+                       STYLE="color: #000000";
+                       type="text" />
+                       
+                <input type="submit" value="Filter" class="btn btn-primary px-5 py-3" />
+
+                }
+            </div>
+                <div class="row">
+
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="@Url.Content(item.pro_image)" alt="@Url.Content(item.pro_TradName)" height="300" width="250">
+                                <div class="caption">
+                                    <p>
+                                        <h3>@item.pro_TradName</h3>
+                                    <p>
+                                        @item.pro_prices
+                                    </p>
+
+                                    <br />
+
+                                    <a href="@Url.Action("Index","Product", new { id = item.Id })" class="btn btn-primary px-4 py-2">
+                                        Buy
+                                    </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
                 </div>
+
             </div>
         </div>
-
-    }
-</div>
-
-

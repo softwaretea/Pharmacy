@@ -145,23 +145,22 @@ namespace PahramcyOnline.Controllers
             }
             base.Dispose(disposing);
         }
-        public ActionResult Search(string name)
-
-        {
-            var product = db.products.Where(c => c.pro_TradName == name);
-            if (product == null)
-                return HttpNotFound();
-
-            return View(product);
-        }
+        
         public ActionResult AdminHome()
         {
             return View();
         }
        
-        public ActionResult Shop()
+        public ActionResult Shop(string search)
         {
-            
+            var Product = from p in db.products
+                          select p;
+            if (!String.IsNullOrEmpty(search))
+            {
+                Product = db.products.Where(p => p.pro_TradName.Equals(search));
+                return View(Product.ToList());
+            }
+
             return View(db.products.ToList());
         }
         /*
