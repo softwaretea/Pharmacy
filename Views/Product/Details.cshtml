@@ -6,80 +6,136 @@
 
 }
 
-<h2>Details</h2>
-@* Should be Redesgined *@
+@* Should be Redesgined
+    
+    
+@model mytestProject.Models.Product
 
-<div>
-    <h4>product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.pro_TradName)
-        </dt>
+@{
 
-        <dd>
-            @Html.DisplayFor(model => model.pro_TradName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pro_prices)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.pro_prices)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pro_quantity)
-        </dt>
+    ViewBag.Title = "product details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.pro_quantity)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pro_company)
-        </dt>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto align-self-center">
+                <div class=" text-center">
 
-        <dd>
-            @Html.DisplayFor(model => model.pro_company)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pro_pharmacology)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.pro_pharmacology)
-        </dd>
+                    <p  style="font-size:160%;font-family:verdana">
+                        name : @Model.name
+                        <br />price : @Model.price<br />
+                        (@Model.Category.name)
+                    </p>
+                    <img src="@Url.Content(Model.image)" alt="@Url.Content(Model.name)" height="300" width="250" />
+                    <p  style="font-size:160%;font-family:verdana;">@Model.description</p>
+                    <p>
+                        <a href="@Url.Action("Edit","Products", new { id = Model.Id })" class="btn btn-dark px-5 py-3">
+                            Update
+                        </a>
+                        <a href="@Url.Action("Delete","Products", new { id = Model.Id })" class="btn btn-danger px-5 py-3" >
+                            Delete
+                        </a>
+                       
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pro_type)
-        </dt>
+                    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.pro_type)
-        </dd>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pro_GenericName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.pro_GenericName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pro_image)
-        </dt>
+    
+    
+    
+    
+    *@
 
-        <dd>
-            @Html.DisplayFor(model => model.pro_image)
-        </dd>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto align-self-center">
+                <div class=" text-center">
+                    <p style="font-size:200%;font-family:verdana">
+                        @Model.pro_TradName
+                    </p>
+                    <hr />
+                    <p>
+                        <dl class="dl-horizontal" style="font-size:160%;font-family:verdana">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pro_prices)
+                            </dt>
 
-    </dl>
+                            <dd>
+                                @Html.DisplayFor(model => model.pro_prices)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pro_quantity)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.pro_quantity)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pro_company)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.pro_company)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pro_pharmacology)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.pro_pharmacology)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pro_type)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.pro_type)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pro_GenericName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.pro_GenericName)
+                            </dd>
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.pro_image)
+                            </dt>
+                            <img src="@Url.Content(Model.pro_image)" alt="@Url.Content(Model.pro_TradName)" height="300" width="250" />
+
+                        </dl>
+
+                    <p>
+                        <a href="@Url.Action("Edit","Product", new { id = Model.Id })" class="btn btn-dark px-5 py-3">
+                            Update
+                        </a>
+                        <a href="@Url.Action("Delete","Product", new { id = Model.Id })" class="btn btn-danger px-5 py-3">
+                            Delete
+                        </a>
+
+
+                    </p>
+                </div>
+                
+            </div>
+            </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

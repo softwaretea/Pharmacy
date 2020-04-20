@@ -10,18 +10,22 @@ namespace PahramcyOnline.Controllers
     {
         public ActionResult Index()
         {
+            Session["Email"] = "";
             return View();
         }
 
         public ActionResult About()
         {
-            
+
+            Session["Email"] = "";
 
             return View();
         }
 
         public ActionResult Contact()
         {
+            Session["Email"] = "";
+
             ViewBag.Message = "Your contact page.";
 
             return View();
@@ -30,8 +34,8 @@ namespace PahramcyOnline.Controllers
         [HttpGet]
         public ActionResult Login_get()
         {
+            Session["Email"] = "";
 
-            Session["Email"] = "admin@Pharmacy.com";
 
             return View();
 
@@ -45,9 +49,11 @@ namespace PahramcyOnline.Controllers
 
 
             if (Email.Equals("admin@Pharmacy.com") && Password.Equals("123456"))
-            { 
+            {
                 //return RedirectToAction("Index", controllerName: "productsController");
                 //return RedirectToAction("Index", "ProductsController");
+                Session["Email"] = "admin@Pharmacy.com";
+
                 return RedirectToAction("AdminHome","Product");
 
                
@@ -64,6 +70,12 @@ namespace PahramcyOnline.Controllers
             }
 
 
+        }
+        public ActionResult Log_out()
+        {
+            Session["Email"] = "";
+
+            return RedirectToAction("index","Home");
         }
 
     }

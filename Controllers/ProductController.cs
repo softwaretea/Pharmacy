@@ -19,16 +19,27 @@ namespace PahramcyOnline.Controllers
         // GET: products
         public ActionResult Index()
         {
-            if (Session["Email"] != null)
-                return View(db.products.ToList());
+            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
             else
-                return RedirectToAction("Login", "Home");
+            {
+                return View(db.products.ToList());
+            }
         }
 
         // GET: products/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+          if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -43,10 +54,14 @@ namespace PahramcyOnline.Controllers
         // GET: products/Create
         public ActionResult Create()
         {
-            if (Session["Email"] != null)
-                return View();
+            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
             else
-                return RedirectToAction("Login", "Home");
+                return View();
+            
         }
 
         // POST: products/Create
@@ -76,7 +91,13 @@ namespace PahramcyOnline.Controllers
         // GET: products/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+           if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -95,14 +116,17 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,pro_TradName,pro_prices,pro_quantity,pro_company,pro_pharmacology,pro_type,pro_GenericName,pro_image")] product product, HttpPostedFileBase proImage)
         {
-            string path = "";
-            if (proImage.FileName.Length > 0)
+            if (proImage != null)
             {
-                path = "~/images/" + Path.GetFileName(proImage.FileName);
-                proImage.SaveAs(Server.MapPath(path));
+                string path = "";
+                if (proImage.FileName.Length > 0)
+                {
+                    path = "~/images/" + Path.GetFileName(proImage.FileName);
+                    proImage.SaveAs(Server.MapPath(path));
+                }
+                product.pro_image = path;
             }
-            product.pro_image = path;
-            var before = db.products.AsNoTracking().Where(x => x.Id == product.Id).ToList().FirstOrDefault();
+          //  var before = db.products.AsNoTracking().Where(x => x.Id == product.Id).ToList().FirstOrDefault();
 
             
                 db.Entry(product).State = EntityState.Modified;
@@ -114,7 +138,13 @@ namespace PahramcyOnline.Controllers
         // GET: products/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+           if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -148,7 +178,13 @@ namespace PahramcyOnline.Controllers
         
         public ActionResult AdminHome()
         {
-            return View();
+            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+                return View();
         }
        
         public ActionResult Shop(string search)
