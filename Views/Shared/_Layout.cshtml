@@ -25,18 +25,18 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="logo">
                         <div class="site-logo">
-                            <a href="@Url.Action("Index")" class="js-logo-clone">Pharma</a>
+                            <a href="@Url.Action("Index","home")" class="js-logo-clone">Pharma</a>
                         </div>
                     </div>
                     <div class="main-nav d-none d-lg-block">
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li ><a href="@Url.Action("Index")">Home</a></li>
-                                <li><a href="@Url.Action("Index")">Store</a></li>
+                                <li ><a href="@Url.Action("Index","home")">Home</a></li>
+                                <li><a href="@Url.Action("Shop", "product")">Store</a></li>
 
 
                                 <li class="has-children">
-                                    <a href="@Url.Action("Index")">Categories</a>
+                                    <a href="@Url.Action("Index","home")">Categories</a>
                                     <ul class="dropdown">
                                         <li class="has-children">
                                             <a href="#">Tablets</a>
@@ -77,15 +77,15 @@
                                 </li>
 
 
-                                <li><a href="@Url.Action("About")">About</a></li>
-                                <li><a href="@Url.Action("Login")">Login As Admin</a></li>
+                                <li><a href="@Url.Action("About","home")">About</a></li>
+                                <li><a href="@Url.Action("Login","home")">Login As Admin</a></li>
                                 
                             </ul>
                         </nav>
                     </div>
                     <div class="icons">
                        
-                        <a href="@Url.Action("Index")" class="icons-btn d-inline-block bag">
+                        <a href="@Url.Action("Index","home")" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
                             <span class="number">0</span>
                         </a>
