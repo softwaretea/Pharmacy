@@ -631,3 +631,4 @@ C:\Users\Hassan Ali\Desktop\newproject\Pharmacy\obj\Debug\PahramcyOnline.csprojA
 C:\Users\Hassan Ali\Desktop\newproject\Pharmacy\obj\Debug\PahramcyOnline.csproj.CopyComplete
 C:\Users\Hassan Ali\Desktop\newproject\Pharmacy\obj\Debug\PahramcyOnline.dll
 C:\Users\Hassan Ali\Desktop\newproject\Pharmacy\obj\Debug\PahramcyOnline.pdb
+E:\second term\SW2\Pharmacy\obj\Debug\PahramcyOnline.csproj.CoreCompileInputs.cache
