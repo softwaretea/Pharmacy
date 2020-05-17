@@ -133,6 +133,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bill.cs">
+      <DependentUpon>projectDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>projectDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\CustomizeProduct.cs" />
     <Compile Include="Models\product.cs">
       <DependentUpon>projectDBModel.tt</DependentUpon>

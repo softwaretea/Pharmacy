@@ -14,6 +14,12 @@ namespace PahramcyOnline.Models
     
     public partial class product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public product()
+        {
+            this.Carts = new HashSet<Cart>();
+        }
+    
         public int Id { get; set; }
         public string pro_TradName { get; set; }
         public double pro_prices { get; set; }
@@ -23,5 +29,8 @@ namespace PahramcyOnline.Models
         public string pro_type { get; set; }
         public string pro_GenericName { get; set; }
         public string pro_image { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart> Carts { get; set; }
     }
 }

@@ -4,7 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="pharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="pharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="id_user" />
+            <PropertyRef Name="added_at" />
+          </Key>
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="added_at" Type="time" Precision="7" Nullable="false" />
+          <Property Name="sum" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="product">
           <Key>
             <PropertyRef Name="Id" />
@@ -19,11 +36,28 @@
           <Property Name="pro_GenericName" Type="nvarchar" MaxLength="100" />
           <Property Name="pro_image" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK__Cart__product_id__36B12243">
+          <End Role="product" Type="Self.product" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="pharmacyModelStoreContainer">
+          <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cart__product_id__36B12243" Association="Self.FK__Cart__product_id__36B12243">
+            <End Role="product" EntitySet="product" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="pharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -40,10 +74,47 @@
           <Property Name="pro_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="pro_GenericName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="pro_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Carts" Relationship="pharmacyModel.FK__Cart__product_id__36B12243" FromRole="product" ToRole="Cart" />
         </EntityType>
         <EntityContainer Name="pharmacyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="Bills" EntityType="pharmacyModel.Bill" />
+          <EntitySet Name="Carts" EntityType="pharmacyModel.Cart" />
+          <AssociationSet Name="FK__Cart__product_id__36B12243" Association="pharmacyModel.FK__Cart__product_id__36B12243">
+            <End Role="product" EntitySet="products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="id_user" />
+            <PropertyRef Name="added_at" />
+          </Key>
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="added_at" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="sum" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="product" Relationship="pharmacyModel.FK__Cart__product_id__36B12243" FromRole="Cart" ToRole="product" />
+        </EntityType>
+        <Association Name="FK__Cart__product_id__36B12243">
+          <End Type="pharmacyModel.product" Role="product" Multiplicity="1" />
+          <End Type="pharmacyModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -62,6 +133,24 @@
                 <ScalarProperty Name="pro_type" ColumnName="pro_type" />
                 <ScalarProperty Name="pro_GenericName" ColumnName="pro_GenericName" />
                 <ScalarProperty Name="pro_image" ColumnName="pro_image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="pharmacyModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="sum" ColumnName="sum" />
+                <ScalarProperty Name="added_at" ColumnName="added_at" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="pharmacyModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -89,6 +178,9 @@
     <Diagrams>
       <Diagram DiagramId="080e46fe65414ed6adf040cb3c0ebc01" Name="Diagram1">
         <EntityTypeShape EntityType="pharmacyModel.product" Width="1.5" PointX="3.375" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pharmacyModel.Bill" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="pharmacyModel.Cart" Width="1.5" PointX="6" PointY="1.25" />
+        <AssociationConnector Association="pharmacyModel.FK__Cart__product_id__36B12243" />
       </Diagram>
     </Diagrams>
   </Designer>

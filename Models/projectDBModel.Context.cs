@@ -26,5 +26,7 @@ namespace PahramcyOnline.Models
         }
     
         public virtual DbSet<product> products { get; set; }
+        public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
     }
 }
