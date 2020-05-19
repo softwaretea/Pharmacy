@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="pharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id_admin" />
+          </Key>
+          <Property Name="Id_admin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email_Admin" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password_Admin" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="First_Name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Last_Name" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Bill">
           <Key>
             <PropertyRef Name="id_user" />
@@ -36,6 +46,28 @@
           <Property Name="pro_GenericName" Type="nvarchar" MaxLength="100" />
           <Property Name="pro_image" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id_user" />
+          </Key>
+          <Property Name="Id_user" Type="int" Nullable="false" />
+          <Property Name="fisrt_name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="last_name" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="email_user" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Bill__id_user__70DDC3D8">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id_user" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Cart__product_id__36B12243">
           <End Role="product" Type="Self.product" Multiplicity="1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
@@ -48,12 +80,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Cart__user_id__6FE99F9F">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id_user" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="pharmacyModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Bill__id_user__70DDC3D8" Association="Self.FK__Bill__id_user__70DDC3D8">
+            <End Role="User" EntitySet="User" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
           <AssociationSet Name="FK__Cart__product_id__36B12243" Association="Self.FK__Cart__product_id__36B12243">
             <End Role="product" EntitySet="product" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__user_id__6FE99F9F" Association="Self.FK__Cart__user_id__6FE99F9F">
+            <End Role="User" EntitySet="User" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
         </EntityContainer>
@@ -84,6 +138,16 @@
             <End Role="product" EntitySet="products" />
             <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
+          <EntitySet Name="Admins" EntityType="pharmacyModel.Admin" />
+          <EntitySet Name="Users" EntityType="pharmacyModel.User" />
+          <AssociationSet Name="FK__Bill__id_user__70DDC3D8" Association="pharmacyModel.FK__Bill__id_user__70DDC3D8">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__user_id__6FE99F9F" Association="pharmacyModel.FK__Cart__user_id__6FE99F9F">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Bill">
           <Key>
@@ -93,6 +157,7 @@
           <Property Name="id_user" Type="Int32" Nullable="false" />
           <Property Name="added_at" Type="Time" Nullable="false" Precision="7" />
           <Property Name="sum" Type="Double" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="pharmacyModel.FK__Bill__id_user__70DDC3D8" FromRole="Bill" ToRole="User" />
         </EntityType>
         <EntityType Name="Cart">
           <Key>
@@ -102,6 +167,7 @@
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="product_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="product" Relationship="pharmacyModel.FK__Cart__product_id__36B12243" FromRole="Cart" ToRole="product" />
+          <NavigationProperty Name="User" Relationship="pharmacyModel.FK__Cart__user_id__6FE99F9F" FromRole="Cart" ToRole="User" />
         </EntityType>
         <Association Name="FK__Cart__product_id__36B12243">
           <End Type="pharmacyModel.product" Role="product" Multiplicity="1" />
@@ -112,6 +178,52 @@
             </Principal>
             <Dependent Role="Cart">
               <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id_admin" />
+          </Key>
+          <Property Name="Id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email_Admin" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Password_Admin" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="First_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id_user" />
+          </Key>
+          <Property Name="Id_user" Type="Int32" Nullable="false" />
+          <Property Name="fisrt_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="email_user" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Bills" Relationship="pharmacyModel.FK__Bill__id_user__70DDC3D8" FromRole="User" ToRole="Bill" />
+          <NavigationProperty Name="Carts" Relationship="pharmacyModel.FK__Cart__user_id__6FE99F9F" FromRole="User" ToRole="Cart" />
+        </EntityType>
+        <Association Name="FK__Bill__id_user__70DDC3D8">
+          <End Type="pharmacyModel.User" Role="User" Multiplicity="1" />
+          <End Type="pharmacyModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id_user" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cart__user_id__6FE99F9F">
+          <End Type="pharmacyModel.User" Role="User" Multiplicity="1" />
+          <End Type="pharmacyModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id_user" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="user_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -154,6 +266,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="pharmacyModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Password_Admin" ColumnName="Password_Admin" />
+                <ScalarProperty Name="Email_Admin" ColumnName="Email_Admin" />
+                <ScalarProperty Name="Id_admin" ColumnName="Id_admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="pharmacyModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email_user" ColumnName="email_user" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="fisrt_name" ColumnName="fisrt_name" />
+                <ScalarProperty Name="Id_user" ColumnName="Id_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -176,11 +310,15 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram DiagramId="080e46fe65414ed6adf040cb3c0ebc01" Name="Diagram1">
+      <Diagram DiagramId="080e46fe65414ed6adf040cb3c0ebc01" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="pharmacyModel.product" Width="1.5" PointX="3.375" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="pharmacyModel.Bill" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="pharmacyModel.Cart" Width="1.5" PointX="6" PointY="1.25" />
         <AssociationConnector Association="pharmacyModel.FK__Cart__product_id__36B12243" />
+        <EntityTypeShape EntityType="pharmacyModel.Admin" Width="1.5" PointX="2.625" PointY="4.75" />
+        <EntityTypeShape EntityType="pharmacyModel.User" Width="1.5" PointX="0.5" PointY="4" />
+        <AssociationConnector Association="pharmacyModel.FK__Bill__id_user__70DDC3D8" />
+        <AssociationConnector Association="pharmacyModel.FK__Cart__user_id__6FE99F9F" />
       </Diagram>
     </Diagrams>
   </Designer>

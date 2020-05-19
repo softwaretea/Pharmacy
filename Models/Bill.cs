@@ -17,5 +17,7 @@ namespace PahramcyOnline.Models
         public int id_user { get; set; }
         public System.TimeSpan added_at { get; set; }
         public double sum { get; set; }
+    
+        public virtual User User { get; set; }
     }
 }

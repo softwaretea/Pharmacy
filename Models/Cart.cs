@@ -19,5 +19,6 @@ namespace PahramcyOnline.Models
         public int product_id { get; set; }
     
         public virtual product product { get; set; }
+        public virtual User User { get; set; }
     }
 }
