@@ -13,8 +13,103 @@
     <Property Name="pro_type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="pro_GenericName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="pro_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Carts" Relationship="pharmacyModel.FK__Cart__product_id__36B12243" FromRole="product" ToRole="Cart" />
   </EntityType>
   <EntityContainer Name="pharmacyEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="Bills" EntityType="pharmacyModel.Bill" />
+    <EntitySet Name="Carts" EntityType="pharmacyModel.Cart" />
+    <AssociationSet Name="FK__Cart__product_id__36B12243" Association="pharmacyModel.FK__Cart__product_id__36B12243">
+      <End Role="product" EntitySet="products" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <EntitySet Name="Admins" EntityType="pharmacyModel.Admin" />
+    <EntitySet Name="Users" EntityType="pharmacyModel.User" />
+    <AssociationSet Name="FK__Bill__id_user__70DDC3D8" Association="pharmacyModel.FK__Bill__id_user__70DDC3D8">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cart__user_id__6FE99F9F" Association="pharmacyModel.FK__Cart__user_id__6FE99F9F">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="id_user" />
+      <PropertyRef Name="added_at" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="added_at" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="sum" Type="Double" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="pharmacyModel.FK__Bill__id_user__70DDC3D8" FromRole="Bill" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="cart_id" />
+    </Key>
+    <Property Name="cart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="product" Relationship="pharmacyModel.FK__Cart__product_id__36B12243" FromRole="Cart" ToRole="product" />
+    <NavigationProperty Name="User" Relationship="pharmacyModel.FK__Cart__user_id__6FE99F9F" FromRole="Cart" ToRole="User" />
+  </EntityType>
+  <Association Name="FK__Cart__product_id__36B12243">
+    <End Type="pharmacyModel.product" Role="product" Multiplicity="1" />
+    <End Type="pharmacyModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id_admin" />
+    </Key>
+    <Property Name="Id_admin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email_Admin" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Password_Admin" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="First_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id_user" />
+    </Key>
+    <Property Name="Id_user" Type="Int32" Nullable="false" />
+    <Property Name="fisrt_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="last_name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="email_user" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Bills" Relationship="pharmacyModel.FK__Bill__id_user__70DDC3D8" FromRole="User" ToRole="Bill" />
+    <NavigationProperty Name="Carts" Relationship="pharmacyModel.FK__Cart__user_id__6FE99F9F" FromRole="User" ToRole="Cart" />
+  </EntityType>
+  <Association Name="FK__Bill__id_user__70DDC3D8">
+    <End Type="pharmacyModel.User" Role="User" Multiplicity="1" />
+    <End Type="pharmacyModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cart__user_id__6FE99F9F">
+    <End Type="pharmacyModel.User" Role="User" Multiplicity="1" />
+    <End Type="pharmacyModel.Cart" Role="Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id_user" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
