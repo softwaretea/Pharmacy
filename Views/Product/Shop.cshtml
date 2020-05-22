@@ -2,8 +2,8 @@
 @{
     ViewBag.Title = "Shop";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    DateTime now = DateTime.Now;
 }
-
     <div class="container">
 
 
@@ -11,7 +11,7 @@
 
             <div class="d-flex align-items-lg-center justify-content-lg-around">
                 
-                @using(Html.BeginForm("Shop", "Product", FormMethod.Get))
+                @using (Html.BeginForm("Shop", "Product", FormMethod.Get))
                 {
 
                 <input id="search"
@@ -52,9 +52,14 @@
 
                                     <br />
 
-                                    <a href="@Url.Action("Index","Product", new { id = item.Id })" class="btn btn-primary px-4 py-2">
-                                        Buy
+                                    @*<a href="@Url.Action("Index","Product", new { id = item.Id })" class="btn btn-primary px-4 py-2">
+                                         Buy
+                                </a>*@
+
+                                    <a href="@Url.Action("Create","Carts", new { product_id = item.Id,added_at = now})" class="btn btn-info px-1 py-1">
+                                        Add To Cart
                                     </a>
+
                                 </div>
                             </div>
                         </div>

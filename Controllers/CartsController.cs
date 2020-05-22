@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 using PahramcyOnline.Models;
 
 namespace PahramcyOnline.Controllers
@@ -36,31 +37,38 @@ namespace PahramcyOnline.Controllers
             return View(cart);
         }
 
-        // GET: Carts/Create
-        public ActionResult Create()
-        {
-            ViewBag.product_id = new SelectList(db.products, "Id", "pro_TradName");
-            ViewBag.user_id = new SelectList(db.Users, "Id_user", "fisrt_name");
-            return View();
-        }
+        //// GET: Carts/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.product_id = new SelectList(db.products, "Id", "pro_TradName");
+        //    ViewBag.user_id = new SelectList(db.Users, "Id_user", "fisrt_name");
+        //    return View();
+        //}
 
         // POST: Carts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "cart_id,user_id,product_id")] Cart cart)
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "cart_id,product_id")] Cart cart)
         {
-            if (ModelState.IsValid)
+            if (Session["user_id"] != null)
             {
-                db.Carts.Add(cart);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    cart.user_id = (int)Session["user_id"];
+                    db.Carts.Add(cart);
+                    db.SaveChanges();
+                    //return RedirectToAction("Index");
+                    return RedirectToAction("Shop", "product");
+                }
 
-            ViewBag.product_id = new SelectList(db.products, "Id", "pro_TradName", cart.product_id);
-            ViewBag.user_id = new SelectList(db.Users, "Id_user", "fisrt_name", cart.user_id);
-            return View(cart);
+                ViewBag.product_id = new SelectList(db.products, "Id", "pro_TradName", cart.product_id);
+                ViewBag.user_id = new SelectList(db.Users, "Id_user", "fisrt_name", cart.user_id);
+                //return View(cart);
+                return RedirectToAction("Shop", "product");
+            }
+            return RedirectToAction("Login", "home");
         }
 
         // GET: Carts/Edit/5
