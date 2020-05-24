@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 @using (Html.BeginForm())
 {
@@ -16,7 +16,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-            <div class="form-group style="width:100%;">
+            <div class="form-group "style="width:100%;">
                 @Html.LabelFor(model => model.fisrt_name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.fisrt_name, new { htmlAttributes = new { @class = "form-control" } })

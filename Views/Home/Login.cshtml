@@ -149,28 +149,29 @@
 
                 <div class="login-actions-container">
                     @*<div class="form__field form__field--remember-me">
-                            <label class="label label--remember-me" for="login__remember-me">
-                                <input id="login__remember-me" type="checkbox">
-                                <span class="checkmark"></span>
-                                <span class="remember-me-text">Remember me</span>
-                            </label>
-                        </div>*@
+            <label class="label label--remember-me" for="login__remember-me">
+                <input id="login__remember-me" type="checkbox">
+                <span class="checkmark"></span>
+                <span class="remember-me-text">Remember me</span>
+            </label>
+        </div>*@
 
                     @*<a class="forgot-password" href="#">Forgot Password?</a>*@
 
                     <div class="form__field form__field--submit">
                         <input type="submit" value="log in">
-                        <a href="@Url.Action("Create","Users")">
-                            sign up as new user
-                        </a>
+
                     </div>
+                    <a href="@Url.Action("Create","Users")">
+                        sign up as new user
+                    </a>
                 </div>
                 <div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-7 mx-auto align-self-center">
                                 <div class=" text-center">
-                                    <h1>@ViewBag.Message</h1>
+                                    <h5>@ViewBag.Message</h5>
                                 </div>
                             </div>
                         </div>

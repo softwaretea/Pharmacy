@@ -25,20 +25,25 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="logo">
                         <div class="site-logo">
-                            <a href="@Url.Action("Index","home")" class="js-logo-clone">Pharma</a>
+                            <a href="#" class="js-logo-clone">Pharma</a>
                         </div>
                     </div>
                     <div class="main-nav d-none d-lg-block">
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
+                                <li><a href="#">Home</a></li>
 
-                                <li><a href="@Url.Action("Index","home")">Home</a></li>
                                 <li><a href="@Url.Action("Shop", "product")">Store</a></li>
 
 
                                 <li class="has-children">
-                                    <a href="@Url.Action("Index","home")">Categories</a>
+                                    <a href="#">Categories</a>
                                     <ul class="dropdown">
+                                        <li class="has-children">
+                                            <br />
+                                            <ul class="dropdown">
+                                            </ul>
+                                        </li>
                                         <li class="has-children">
                                             <a href="#">Tablets</a>
                                             <ul class="dropdown">
@@ -78,17 +83,24 @@
 
                                 </li>
                                 <li class="has-children">
-                                    <a href="@Url.Action("Details" , "Users", new { id = (int)Session["user_id"] })">Profile</a>
+                                    <a href="#">My Profile</a>
                                     <ul class="dropdown">
+                                        <li class="has-children">
+                                            <br />
+                                            <ul class="dropdown">
+                                            </ul>
+                                        </li>
+                                        <li><a href="@Url.Action("Details" , "Users", new { id = (int)Session["user_id"] })">Show Profile</a></li>
                                         <li> <a href="@Url.Action("Edit", "Users", new { id = (int)Session["user_id"] })">Update Profile</a></li>
                                     </ul>
                                 </li>
-                                        <li>
-                                            <a href="@Url.Action("About","home")">About</a>
-                                        </li>
-                                        
-                                        <li class="#"><a href="@Url.Action("Log_out","Home")">Log out</a></li>
-                                    </ul>
+                                <li>
+                                    <a href="@Url.Action("About","Home")">About</a>
+                                </li>
+
+                                <li class="#"><a href="@Url.Action("Log_out","Home")">Log out</a></li>
+
+                            </ul>
 </nav>
                     </div>
                     <div class="icons">

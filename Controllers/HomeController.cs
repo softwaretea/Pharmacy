@@ -79,7 +79,7 @@ namespace PahramcyOnline.Controllers
             }
             else
             {
-                ViewBag.Message = "not matched";
+                ViewBag.Message = "User name OR password was wrong";
 
 
                 return View();
@@ -94,7 +94,7 @@ namespace PahramcyOnline.Controllers
             Session["user_id"] = "";
 
 
-            return RedirectToAction("index","Home");
+            return RedirectToAction("Index","Home");
         }
         
         
