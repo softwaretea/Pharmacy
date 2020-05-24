@@ -1,19 +1,23 @@
 ﻿@model IEnumerable<PahramcyOnline.Models.product>
 @{
     ViewBag.Title = "Shop";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Session["user_id"] != null)
+    {
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+
+    }
     DateTime now = DateTime.Now;
 }
     <div class="container">
-
-
         <div class="site-navbar py-2">
-
-            <div class="d-flex align-items-lg-center justify-content-lg-around">
-                
+            <div class="d-flex align-items-lg-center justify-content-lg-around">  
                 @using (Html.BeginForm("Shop", "Product", FormMethod.Get))
                 {
-
                 <input id="search"
                        name="search"
                        size="1"
@@ -39,7 +43,6 @@
 
                     @foreach (var item in Model)
                     {
-
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
                                 <img src="@Url.Content(item.pro_image)" alt="@Url.Content(item.pro_TradName)" height="300" width="250">
@@ -55,17 +58,13 @@
                                     @*<a href="@Url.Action("Index","Product", new { id = item.Id })" class="btn btn-primary px-4 py-2">
                                          Buy
                                 </a>*@
-
                                     <a href="@Url.Action("Create","Carts", new { product_id = item.Id ,added_at = now })" class="btn btn-info px-1 py-1">
                                         Add To Cart
                                     </a>
-
                                 </div>
                             </div>
                         </div>
-
                     }
                 </div>
-
             </div>
         </div>

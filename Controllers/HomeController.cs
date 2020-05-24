@@ -89,6 +89,8 @@ namespace PahramcyOnline.Controllers
         public ActionResult Log_out()
         {
             Session["Email"] = "";
+            Session["user_id"] = "";
+
 
             return RedirectToAction("index","Home");
         }

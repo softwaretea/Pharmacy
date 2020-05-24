@@ -19,21 +19,22 @@ namespace PahramcyOnline.Controllers
         // GET: products
         public ActionResult Index()
         {
-            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            if (Session["Email"] != null)
             {
-                return RedirectToAction("Index", "Home");
+                return View(db.products.ToList());
 
             }
             else
             {
-                return View(db.products.ToList());
+                return RedirectToAction("Index", "Home");
+                
             }
         }
 
         // GET: products/Details/5
         public ActionResult Details(int? id)
         {
-            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            if (Session["Email"] == null)
             {
                 return RedirectToAction("Index", "Home");
 
@@ -54,14 +55,17 @@ namespace PahramcyOnline.Controllers
         // GET: products/Create
         public ActionResult Create()
         {
-            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            if (Session["Email"] != null)
             {
-                return RedirectToAction("Index", "Home");
 
+                return View();
             }
             else
-                return View();
+            {
+                return RedirectToAction("Index", "Home");
+            }
             
+
         }
 
         // POST: products/Create
@@ -91,7 +95,7 @@ namespace PahramcyOnline.Controllers
         // GET: products/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            if (Session["Email"] == null)
             {
                 return RedirectToAction("Index", "Home");
 
@@ -138,7 +142,7 @@ namespace PahramcyOnline.Controllers
         // GET: products/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            if (Session["Email"] == null)
             {
                 return RedirectToAction("Index", "Home");
 
@@ -178,7 +182,7 @@ namespace PahramcyOnline.Controllers
         
         public ActionResult AdminHome()
         {
-            if (Session["Email"].ToString() != "admin@Pharmacy.com")
+            if (Session["Email"] == null)
             {
                 return RedirectToAction("Index", "Home");
 
