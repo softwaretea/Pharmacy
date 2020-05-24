@@ -50,13 +50,16 @@
           <Key>
             <PropertyRef Name="Id_user" />
           </Key>
-          <Property Name="Id_user" Type="int" Nullable="false" />
+          <Property Name="Id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="fisrt_name" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="last_name" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="email_user" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="phone_number" Type="int" Nullable="false" />
+          <Property Name="address" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="User_Name" Type="nchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Bill__id_user__70DDC3D8">
+        <Association Name="FK__Bill__id_user__17036CC0">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
           <ReferentialConstraint>
@@ -80,7 +83,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cart__user_id__6FE99F9F">
+        <Association Name="FK__Cart__user_id__160F4887">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
           <ReferentialConstraint>
@@ -98,7 +101,7 @@
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Bill__id_user__70DDC3D8" Association="Self.FK__Bill__id_user__70DDC3D8">
+          <AssociationSet Name="FK__Bill__id_user__17036CC0" Association="Self.FK__Bill__id_user__17036CC0">
             <End Role="User" EntitySet="User" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
@@ -106,7 +109,7 @@
             <End Role="product" EntitySet="product" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cart__user_id__6FE99F9F" Association="Self.FK__Cart__user_id__6FE99F9F">
+          <AssociationSet Name="FK__Cart__user_id__160F4887" Association="Self.FK__Cart__user_id__160F4887">
             <End Role="User" EntitySet="User" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
@@ -202,6 +205,9 @@
           <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Bills" Relationship="pharmacyModel.FK__Bill__id_user__70DDC3D8" FromRole="User" ToRole="Bill" />
           <NavigationProperty Name="Carts" Relationship="pharmacyModel.FK__Cart__user_id__6FE99F9F" FromRole="User" ToRole="Cart" />
+          <Property Name="phone_number" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="User_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK__Bill__id_user__70DDC3D8">
           <End Type="pharmacyModel.User" Role="User" Multiplicity="1" />
@@ -280,6 +286,9 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="pharmacyModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="email_user" ColumnName="email_user" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />

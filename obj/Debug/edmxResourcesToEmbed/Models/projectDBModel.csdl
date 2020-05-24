@@ -87,6 +87,9 @@
     <Property Name="password" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="Bills" Relationship="pharmacyModel.FK__Bill__id_user__70DDC3D8" FromRole="User" ToRole="Bill" />
     <NavigationProperty Name="Carts" Relationship="pharmacyModel.FK__Cart__user_id__6FE99F9F" FromRole="User" ToRole="Cart" />
+    <Property Name="phone_number" Type="Int32" Nullable="false" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="User_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
   </EntityType>
   <Association Name="FK__Bill__id_user__70DDC3D8">
     <End Type="pharmacyModel.User" Role="User" Multiplicity="1" />

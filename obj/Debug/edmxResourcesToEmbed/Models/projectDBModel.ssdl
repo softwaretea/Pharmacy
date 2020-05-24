@@ -45,13 +45,16 @@
     <Key>
       <PropertyRef Name="Id_user" />
     </Key>
-    <Property Name="Id_user" Type="int" Nullable="false" />
+    <Property Name="Id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="fisrt_name" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="last_name" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="email_user" Type="nchar" MaxLength="100" Nullable="false" />
     <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="phone_number" Type="int" Nullable="false" />
+    <Property Name="address" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="User_Name" Type="nchar" MaxLength="100" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Bill__id_user__70DDC3D8">
+  <Association Name="FK__Bill__id_user__17036CC0">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
     <ReferentialConstraint>
@@ -75,7 +78,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Cart__user_id__6FE99F9F">
+  <Association Name="FK__Cart__user_id__160F4887">
     <End Role="User" Type="Self.User" Multiplicity="1" />
     <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
     <ReferentialConstraint>
@@ -93,7 +96,7 @@
     <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="product" EntityType="Self.product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Bill__id_user__70DDC3D8" Association="Self.FK__Bill__id_user__70DDC3D8">
+    <AssociationSet Name="FK__Bill__id_user__17036CC0" Association="Self.FK__Bill__id_user__17036CC0">
       <End Role="User" EntitySet="User" />
       <End Role="Bill" EntitySet="Bill" />
     </AssociationSet>
@@ -101,7 +104,7 @@
       <End Role="product" EntitySet="product" />
       <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>
-    <AssociationSet Name="FK__Cart__user_id__6FE99F9F" Association="Self.FK__Cart__user_id__6FE99F9F">
+    <AssociationSet Name="FK__Cart__user_id__160F4887" Association="Self.FK__Cart__user_id__160F4887">
       <End Role="User" EntitySet="User" />
       <End Role="Cart" EntitySet="Cart" />
     </AssociationSet>

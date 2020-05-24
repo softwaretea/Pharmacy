@@ -9,6 +9,7 @@ namespace PahramcyOnline.Controllers
 {
     public class HomeController : Controller
     {
+        public int x;
         private pharmacyEntities db = new pharmacyEntities();
         public ActionResult Index()
         {
@@ -52,11 +53,12 @@ namespace PahramcyOnline.Controllers
             if (ModelState.IsValid)
             {
                 {
-                    var obj = db.Users.Where(a => a.email_user.Equals(Email) && a.password.Equals(Password)).FirstOrDefault();
+                    var obj = db.Users.Where(a => a.User_Name.Equals(Email) && a.password.Equals(Password)).FirstOrDefault();
                     if (obj != null)
                     {
                         Session["user_id"] = (int)obj.Id_user;
-                        Session["UserName"] = obj.email_user.ToString();
+                        Session["UserName"] = obj.User_Name.ToString();
+                        this.x = obj.Id_user;   
                         return RedirectToAction("Shop", "product");
                     }
                 }
@@ -94,6 +96,7 @@ namespace PahramcyOnline.Controllers
 
             return RedirectToAction("index","Home");
         }
-
+        
+        
     }
 }

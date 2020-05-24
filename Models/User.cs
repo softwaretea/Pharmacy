@@ -26,6 +26,9 @@ namespace PahramcyOnline.Models
         public string last_name { get; set; }
         public string email_user { get; set; }
         public string password { get; set; }
+        public int phone_number { get; set; }
+        public string address { get; set; }
+        public string User_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bill> Bills { get; set; }
