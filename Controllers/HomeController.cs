@@ -59,7 +59,7 @@ namespace PahramcyOnline.Controllers
                         Session["user_id"] = (int)obj.Id_user;
                         Session["UserName"] = obj.User_Name.ToString();
                         this.x = obj.Id_user;   
-                        return RedirectToAction("Shop", "product");
+                        return RedirectToAction("UserHome", "Users");
                     }
                 }
             }

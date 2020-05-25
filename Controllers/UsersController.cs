@@ -20,6 +20,11 @@ namespace PahramcyOnline.Controllers
             return View(db.Users.ToList());
         }
 
+        public ActionResult UserHome()
+        {
+            return View(); 
+        }
+
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
