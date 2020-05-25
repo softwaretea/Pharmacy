@@ -48,14 +48,32 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id_user,fisrt_name,last_name,User_Name,address,phone_number,email_user,password")] User user)
         {
-            if (ModelState.IsValid)
+            var phone  = 0;
+            int newphone;
+            var obj = db.Users.Where(a => a.User_Name.Equals(user.User_Name)).FirstOrDefault();
+            if (ModelState.IsValid )
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("Login", "Home");
-                
+                {
+                    
+                    if (obj == null)
+                    {
+                        
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                        
+                        return RedirectToAction("Login", "Home");
+                    }
+                    if (obj!=null) {
+
+                        ViewBag.Message = "User name is not valid";
+                        return View();
+
+                    }
+                }
             }
             return RedirectToAction("Create");
+
+
 
         }
 
@@ -126,3 +144,4 @@ namespace PahramcyOnline.Controllers
         }
     }
 }
+

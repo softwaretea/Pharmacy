@@ -3,6 +3,8 @@
 @{
     ViewBag.Title =Model.User_Name;
     Layout = "~/Views/Shared/_UserLayout.cshtml";
+    int x = +20;
+    var phone = (x.ToString() + Model.phone_number.ToString());
 }
 <br />
 <br />
@@ -32,7 +34,7 @@
 
             <br />
 
-            <h3> Your Phone : @Model.phone_number </h3>
+            <h3> Your Phone : @phone </h3>
 
             <br />
 
