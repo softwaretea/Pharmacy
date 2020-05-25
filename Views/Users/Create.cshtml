@@ -4,19 +4,19 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="container">
-        <h4 style="margin-left: 100px;">Creaate New User</h4>
+        <h4 style="margin-left: 100px;">Create New User</h4>
         <h5>@ViewBag.err</h5>
         <hr />
         <div class="form-horizontal" style="width:60%;height:55%;align-content:center;margin-left:100px;">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-            <div class="form-group " style="width:100%;">
+            <div class="form-group " style="width:60%;">
                 @Html.LabelFor(model => model.fisrt_name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.fisrt_name, new { htmlAttributes = new { @class = "form-control" } })
@@ -24,7 +24,7 @@
                 </div>
             </div>
 
-            <div class="form-group" style="width:100%;">
+            <div class="form-group" style="width:60%;">
                 @Html.LabelFor(model => model.last_name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.last_name, new { htmlAttributes = new { @class = "form-control" } })
@@ -32,28 +32,28 @@
                 </div>
             </div>
 
-            <div class="form-group" style="width:100%;">
+            <div class="form-group" style="width:60%;">
                 @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group" style="width:100%;">
+            <div class="form-group" style="width:60%;">
                 @Html.LabelFor(model => model.phone_number, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.phone_number, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.phone_number, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group" style="width:100%;">
+            <div class="form-group" style="width:60%;">
                 @Html.LabelFor(model => model.email_user, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.email_user, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.email_user, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group" style="width:100%;">
+            <div class="form-group" style="width:60%;">
                 @Html.LabelFor(model => model.User_Name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.User_Name, new { htmlAttributes = new { @class = "form-control" } }) 
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="form-group" style="width:100%;">
+            <div class="form-group" style="width:60%;">
                 @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.PasswordFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } }) @ViewBag.Message
@@ -69,9 +69,9 @@
                 </div>
             </div>
 
-            <div class="form-group" style="width:30%;">
+            <div class="form-group" style="width:60%;">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-primary" />
                 </div>
             </div>
         </div>

@@ -146,6 +146,7 @@
       <DependentUpon>projectDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomizeProduct.cs" />
+    <Compile Include="Models\CustomizeUser.cs" />
     <Compile Include="Models\product.cs">
       <DependentUpon>projectDBModel.tt</DependentUpon>
     </Compile>
