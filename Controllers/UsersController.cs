@@ -52,10 +52,11 @@ namespace PahramcyOnline.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login", "Home");
+                
             }
+            return RedirectToAction("Create");
 
-            return View(user);
         }
 
         // GET: Users/Edit/5

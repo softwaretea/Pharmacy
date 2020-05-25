@@ -13,15 +13,19 @@
     }
     DateTime now = DateTime.Now;
 }
-    <div class="container">
-        <div class="site-navbar py-2">
-            <div class="d-flex align-items-lg-center justify-content-lg-around">  
+
+
+<div class="container">
+    <div class="site-blocks-cover inner-page">
+
+
+            <div class="d-flex align-items-lg-center justify-content-lg-around">
                 @using (Html.BeginForm("Shop", "Product", FormMethod.Get))
                 {
-                <input id="search"
-                       name="search"
-                       size="1"
-                       style="    
+                    <input id="search"
+                           name="search"
+                           size="1"
+                           style="
    border-style: inset;
     border-color: #00ffff;
     border: solid 2px;
@@ -32,39 +36,39 @@
     width: 100%;
     height: 60px;
 "
-                       @*STYLE="color: #0000ff";*@
-                       type="text" />
-                       
-                <input type="submit" value="Filter" class="btn btn-primary px-5 py-3" />
+                           @*STYLE="color: #0000ff";*@
+                           type="text" />
+
+                    <input type="submit" value="Filter" class="btn btn-primary px-5 py-3" />
 
                 }
             </div>
-                <div class="row">
+            <div class="row">
 
-                    @foreach (var item in Model)
-                    {
-                        <div class="col-sm-6 col-md-4">
-                            <div class="thumbnail">
-                                <img src="@Url.Content(item.pro_image)" alt="@Url.Content(item.pro_TradName)" height="300" width="250">
-                                <div class="caption">
-                                    <p>
-                                        <h3>@item.pro_TradName</h3>
-                                    <p>
-                                        @item.pro_prices
-                                    </p>
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="@Url.Content(item.pro_image)" alt="@Url.Content(item.pro_TradName)" height="300" width="250">
+                            <div class="caption">
+                                <p>
+                                    <h3>@item.pro_TradName</h3>
+                                <p>
+                                    @item.pro_prices
+                                </p>
 
-                                    <br />
+                                <br />
 
-                                    @*<a href="@Url.Action("Index","Product", new { id = item.Id })" class="btn btn-primary px-4 py-2">
+                                @*<a href="@Url.Action("Index","Product", new { id = item.Id })" class="btn btn-primary px-4 py-2">
                                          Buy
                                 </a>*@
-                                    <a href="@Url.Action("Create","Carts", new { product_id = item.Id ,added_at = now })" class="btn btn-info px-1 py-1">
-                                        Add To Cart
-                                    </a>
-                                </div>
+                                <a href="@Url.Action("Create","Carts", new { product_id = item.Id ,added_at = now })" class="btn btn-info px-1 py-1">
+                                    Add To Cart
+                                </a>
                             </div>
                         </div>
-                    }
-                </div>
+                    </div>
+                }
             </div>
         </div>
+    </div>
