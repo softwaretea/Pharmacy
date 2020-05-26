@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<PahramcyOnline.Models.Cart>
 @{
-                /**/
 
-                ViewBag.Title = "Index";
+                ViewBag.Title = "Show";
                 Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 <div class="container">
@@ -17,6 +16,7 @@
                         <th>
                             Price
                         </th>
+                        <th></th>
                     </tr>
                     @foreach (var item in Model)
                     {
@@ -28,7 +28,7 @@
                                 @Html.DisplayFor(modelItem => item.product.pro_prices)
                             </td>
                             <td>
-                                @Html.ActionLink("Remove", "Delete", new { id = item.cart_id })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.cart_id })
                             </td>
                         </tr>
                     }
