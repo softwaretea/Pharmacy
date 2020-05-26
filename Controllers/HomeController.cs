@@ -92,7 +92,7 @@ namespace PahramcyOnline.Controllers
         {
             Session["Email"] = "";
             Session["user_id"] = "";
-
+            Session["number"] ="";
 
             return RedirectToAction("Index","Home");
         }

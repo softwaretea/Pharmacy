@@ -54,6 +54,16 @@ namespace PahramcyOnline.Controllers
         {
             if (Session["user_id"] != null)
             {
+                var model = db.Carts;
+                int x = 1;
+                foreach(var item in model)
+                {
+                    if (item.user_id.Equals(Session["user_id"]))
+                    {
+                        x += 1;
+                    }
+                }
+                Session["number"] = x;
                 if (ModelState.IsValid)
                 {
                     cart.user_id = (int)Session["user_id"];

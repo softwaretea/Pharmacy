@@ -20,17 +20,20 @@
                     </tr>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.product.pro_TradName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.product.pro_prices)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Remove", "Delete", new { id = item.cart_id })
-                            </td>
-                        </tr>
+                        if (item.user_id.Equals((int)Session["user_id"])) 
+                        { 
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.product.pro_TradName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.product.pro_prices)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Remove", "Delete", new { id = item.cart_id })
+                                </td>
+                            </tr>
+                        }
                     }
                 </table>
             </div>
