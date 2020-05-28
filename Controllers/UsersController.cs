@@ -17,12 +17,30 @@ namespace PahramcyOnline.Controllers
         // GET: Users
         public ActionResult Index()
         {
+            
             return View(db.Users.ToList());
         }
+        
 
         public ActionResult UserHome()
         {
+            number();
             return View(); 
+        }
+        public void number()
+        {
+
+            var model = db.Carts;
+            int x = 0;
+            foreach (var item in model)
+            {
+                if (item.user_id.Equals(Session["user_id"]))
+                {
+                    x += 1;
+                }
+            }
+            Session["number"] = x;
+
         }
 
         // GET: Users/Details/5

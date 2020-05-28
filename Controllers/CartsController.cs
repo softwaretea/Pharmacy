@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,7 +19,19 @@ namespace PahramcyOnline.Controllers
         // GET: Carts
         public ActionResult Index()
         {
+
             var carts = db.Carts.Include(c => c.product).Include(c => c.User);
+            var model = db.Carts;
+            float x = 0;
+            foreach (var item in model)
+            {
+                if (item.user_id.Equals(Session["user_id"]))
+                {
+                   x= x+ (float)item.product.pro_prices;
+                }
+            }
+            Session["sum"] = x;
+            
             return View(carts.ToList());
         }
 
@@ -56,16 +69,18 @@ namespace PahramcyOnline.Controllers
             {
                 var model = db.Carts;
                 int x = 1;
-                foreach(var item in model)
+                foreach (var item in model)
                 {
                     if (item.user_id.Equals(Session["user_id"]))
                     {
-                        x += 1;
+                        x = (int)Session["number"];
                     }
                 }
                 Session["number"] = x;
+
                 if (ModelState.IsValid)
                 {
+                    
                     cart.user_id = (int)Session["user_id"];
                     db.Carts.Add(cart);
                     db.SaveChanges();
@@ -79,6 +94,21 @@ namespace PahramcyOnline.Controllers
                 return RedirectToAction("Shop", "product");
             }
             return RedirectToAction("Login", "home");
+        }
+        public void number()
+        {
+
+            var model = db.Carts;
+            int x = 0;
+            foreach (var item in model)
+            {
+                if (item.user_id.Equals(Session["user_id"]))
+                {
+                    x += 1;
+                }
+            }
+            Session["number"] = x;
+
         }
 
         // GET: Carts/Edit/5
@@ -128,6 +158,23 @@ namespace PahramcyOnline.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "Carts");
         }
+        public ActionResult CartDelete(int id)
+        {
+            var model = db.Carts;
+            
+            foreach (var item in model)
+            {
+                if (Session["user_id"].Equals(id))
+                {
+                    Cart cart = db.Carts.Find(item.cart_id);
+                    db.Carts.Remove(cart);
+                }
+                
+            }
+            db.SaveChanges();
+            return RedirectToAction("UserHome", "Users");
+        }
+        
 
         protected override void Dispose(bool disposing)
         {

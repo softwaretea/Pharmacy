@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<PahramcyOnline.Models.Cart>
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Index";
-                Layout = "~/Views/Shared/_UserLayout.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+    DateTime now = DateTime.Now;
+    
 }
 <div class="container">
     <div class="row">
@@ -17,11 +19,15 @@
                         <th>
                             Price
                         </th>
+                        <th>
+                            Delete
+                        </th>
                     </tr>
+
                     @foreach (var item in Model)
                     {
-                        if (item.user_id.Equals((int)Session["user_id"])) 
-                        { 
+                        if (item.user_id.Equals((int)Session["user_id"]))
+                        {
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.product.pro_TradName)
@@ -30,12 +36,20 @@
                                     @Html.DisplayFor(modelItem => item.product.pro_prices)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Remove", "Delete", new { id = item.cart_id })
+                                    @Html.ActionLink("Remove Fom Cart ", "Delete", new { id = item.cart_id })
                                 </td>
                             </tr>
                         }
                     }
                 </table>
+                <hr />
+                <h3 class="text-center"/>the total = @Session["sum"]
+                <br />
+                @Html.ActionLink("Done", "CartDelete", new { id = (int)Session["user_id"] })
+            @*<a href="@Url.Action("Createb","Bills", new { id = (int)Session["user_id"] ,added_at = now,sum = (float)Session["sum"] })" class="btn btn-info px-1 py-1">
+                Done..
+                
+            </a>*@
             </div>
         </div>
     </div>
