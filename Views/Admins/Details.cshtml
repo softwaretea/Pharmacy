@@ -1,7 +1,8 @@
 ﻿@model PahramcyOnline.Models.Admin
 
 @{
-    Layout = null;
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -12,44 +13,39 @@
     <title>Details</title>
 </head>
 <body>
-    <div>
-        <h4>Admin</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Email_Admin)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Email_Admin)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Password_Admin)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Password_Admin)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.First_Name)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.First_Name)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Last_Name)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Last_Name)
-            </dd>
-    
-        </dl>
+    <div class="container">
+        <h2>Profile : @Model.First_Name</h2>
+        <div class="form-horizontal" style="width:100;height:100%;align-content:center;margin-left:100px;">
+
+
+            <hr />
+
+            <h3>  Your Email :  @Model.Email_Admin </h3>
+
+            <br />
+
+
+            <h3>Your Password : @Model.Password_Admin </h3>
+            <br />
+
+
+
+            <h3>Your first name : @Model.First_Name </h3>
+            <br />
+
+
+            <h3> Your Last name : @Model.Last_Name </h3>
+
+            <br />
+
+            
+
+
+            <hr />
+            <hr />
+        </div>
     </div>
+
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id_admin }) |
         @Html.ActionLink("Back to List", "Index")
