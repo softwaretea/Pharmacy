@@ -68,12 +68,12 @@ namespace PahramcyOnline.Controllers
             if (Session["user_id"] != null)
             {
                 var model = db.Carts;
-                int x = 1;
+                int x = 0;
                 foreach (var item in model)
                 {
                     if (item.user_id.Equals(Session["user_id"]))
                     {
-                        x = (int)Session["number"];
+                        x += 1;
                     }
                 }
                 Session["number"] = x;
@@ -154,6 +154,9 @@ namespace PahramcyOnline.Controllers
         public ActionResult Delete(int id)
         {
             Cart cart = db.Carts.Find(id);
+            int x = (int)Session["number"];
+            x--;
+            Session["number"] = x;
             db.Carts.Remove(cart);
             db.SaveChanges();
             return RedirectToAction("Index", "Carts");
@@ -161,18 +164,27 @@ namespace PahramcyOnline.Controllers
         public ActionResult CartDelete(int id)
         {
             var model = db.Carts;
-            
+
             foreach (var item in model)
             {
                 if (Session["user_id"].Equals(id))
                 {
                     Cart cart = db.Carts.Find(item.cart_id);
                     db.Carts.Remove(cart);
+
                 }
-                
+
             }
             db.SaveChanges();
-            return RedirectToAction("UserHome", "Users");
+            DateTime now = DateTime.Now;
+
+
+
+
+            
+
+
+            return RedirectToAction("Create", "Bills" ,new { id_user= id, sum= Session["sum"] });
         }
         
 

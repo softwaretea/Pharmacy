@@ -180,17 +180,7 @@ namespace PahramcyOnline.Controllers
             base.Dispose(disposing);
         }
         
-        public ActionResult AdminHome()
-        {
-            if (Session["Email"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-
-            }
-            else
-                return View();
-        }
-       
+        
         public ActionResult Shop(string search)
         {
             var Product = from p in db.products

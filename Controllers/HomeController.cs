@@ -49,7 +49,7 @@ namespace PahramcyOnline.Controllers
         [HttpPost]
         public ActionResult Login_post(String Email, String Password)
         {
-     
+
             if (ModelState.IsValid)
             {
                 {
@@ -58,36 +58,32 @@ namespace PahramcyOnline.Controllers
                     {
                         Session["user_id"] = (int)obj.Id_user;
                         Session["UserName"] = obj.User_Name.ToString();
-                        this.x = obj.Id_user;   
+                        this.x = obj.Id_user;
                         return RedirectToAction("UserHome", "Users");
+                    }
+
+
+                    var obj1 = db.Admins.Where(a => a.Email_Admin.Equals(Email) && a.Password_Admin.Equals(Password)).FirstOrDefault();
+                    if (obj1 != null)
+                    {
+                        Session["admin_id"] = (int)obj1.Id_admin;
+                        Session["UserName"] = obj1.Email_Admin.ToString();
+                        this.x = obj1.Id_admin;
+                        return RedirectToAction("AdminHome", "Admins");
+                    }
+                    else
+                    {
+                        ViewBag.Message = "User name OR password was wrong";
+                        return View();
                     }
                 }
             }
-         
-
-            if (Email.Equals("admin@Pharmacy.com") && Password.Equals("123456"))
-            {
-                //return RedirectToAction("Index", controllerName: "productsController");
-                //return RedirectToAction("Index", "ProductsController");
-                Session["Email"] = "admin@Pharmacy.com";
-
-                return RedirectToAction("AdminHome","Product");
-
-               
-                
-
-            }
-            else
-            {
-                ViewBag.Message = "User name OR password was wrong";
-
-
-                return View();
-
-            }
+            return RedirectToAction("Login", "Home");
 
 
         }
+
+
         public ActionResult Log_out()
         {
             Session["Email"] = "";

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using PahramcyOnline.Models;
 
 namespace PahramcyOnline.Controllers
@@ -37,28 +39,20 @@ namespace PahramcyOnline.Controllers
         }
 
         // GET: Bills/Create
-        public ActionResult Create()
+       
+        public ActionResult Create( int id_user, double sum)
         {
-            ViewBag.id_user = new SelectList(db.Users, "Id_user", "fisrt_name");
-            return View();
-        }
-
-        // POST: Bills/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_user,added_at,sum")] Bill bill)
-        {
-            if (ModelState.IsValid)
-            {
+            Bill bill=new Bill();
+            bill.id_user = id_user;
+            DateTime now = DateTime.Now;
+            DateTime date1 = DateTime.Now;
+            TimeSpan value = date1.Subtract(now);
+            bill.added_at = value;
+            bill.sum = sum;
                 db.Bills.Add(bill);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.id_user = new SelectList(db.Users, "Id_user", "fisrt_name", bill.id_user);
-            return View(bill);
+                return RedirectToAction("UserHome","Users");
+            
         }
 
         // GET: Bills/Edit/5

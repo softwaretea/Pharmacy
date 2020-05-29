@@ -15,14 +15,23 @@ namespace PahramcyOnline.Controllers
         private pharmacyEntities db = new pharmacyEntities();
 
         // GET: Admins
-        public ActionResult Index()
+        
+        public ActionResult AdminHome()
         {
-            return View(db.Admins.ToList());
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            else
+                return View();
         }
 
+
         // GET: Admins/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details()
         {
+            var id = Session["admin_id"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -59,8 +68,10 @@ namespace PahramcyOnline.Controllers
         }
 
         // GET: Admins/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit()
         {
+            var id = Session["admin_id"];
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,7 +95,7 @@ namespace PahramcyOnline.Controllers
             {
                 db.Entry(admin).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminHome");
             }
             return View(admin);
         }
