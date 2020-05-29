@@ -45,27 +45,7 @@ namespace PahramcyOnline.Controllers
         }
 
         // GET: Admins/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Admins/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id_admin,Email_Admin,Password_Admin,First_Name,Last_Name")] Admin admin)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Admins.Add(admin);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(admin);
-        }
+     
 
         // GET: Admins/Edit/5
         public ActionResult Edit()
@@ -100,32 +80,7 @@ namespace PahramcyOnline.Controllers
             return View(admin);
         }
 
-        // GET: Admins/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Admin admin = db.Admins.Find(id);
-            if (admin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(admin);
-        }
-
-        // POST: Admins/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Admin admin = db.Admins.Find(id);
-            db.Admins.Remove(admin);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
+      
         protected override void Dispose(bool disposing)
         {
             if (disposing)

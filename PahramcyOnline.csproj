@@ -338,21 +338,10 @@
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\slick.min.js" />
-    <Content Include="Views\Carts\Create.cshtml" />
-    <Content Include="Views\Carts\Delete.cshtml" />
-    <Content Include="Views\Carts\Details.cshtml" />
-    <Content Include="Views\Carts\Edit.cshtml" />
     <Content Include="Views\Carts\Index.cshtml" />
-    <Content Include="Views\Bills\Create.cshtml" />
-    <Content Include="Views\Bills\Delete.cshtml" />
-    <Content Include="Views\Bills\Details.cshtml" />
-    <Content Include="Views\Bills\Edit.cshtml" />
     <Content Include="Views\Bills\Index.cshtml" />
-    <Content Include="Views\Admins\Create.cshtml" />
-    <Content Include="Views\Admins\Delete.cshtml" />
     <Content Include="Views\Admins\Details.cshtml" />
     <Content Include="Views\Admins\Edit.cshtml" />
-    <Content Include="Views\Admins\Index.cshtml" />
     <None Include="Views\Admins\AdminHome.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -363,9 +352,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -378,12 +365,10 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Product\Shop.cshtml" />
     <Content Include="Views\Shared\_UserLayout.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\error.cshtml" />
     <Content Include="Views\Users\UserHome.cshtml" />
   </ItemGroup>
   <ItemGroup />

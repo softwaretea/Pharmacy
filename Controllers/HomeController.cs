@@ -13,26 +13,17 @@ namespace PahramcyOnline.Controllers
         private pharmacyEntities db = new pharmacyEntities();
         public ActionResult Index()
         {
-            Session["Email"] = "";
             return View();
         }
 
         public ActionResult About()
         {
 
-            Session["Email"] = "";
 
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            Session["Email"] = "";
-
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+      
         [ActionName("Login")]
         [HttpGet]
         public ActionResult Login_get()
