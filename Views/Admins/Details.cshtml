@@ -5,14 +5,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
     <div class="container">
         <h2>Profile : @Model.First_Name</h2>
         <div class="form-horizontal" style="width:100;height:100%;align-content:center;margin-left:100px;">
@@ -46,9 +39,4 @@
         </div>
     </div>
 
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id_admin }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+ 

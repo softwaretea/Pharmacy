@@ -120,13 +120,13 @@ namespace PahramcyOnline.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id_user,fisrt_name,last_name,email_user,password")] User user)
+        public ActionResult Edit([Bind(Include = "Id_user,fisrt_name,last_name,email_user,password,address,phone_number,User_Name")] User user)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UserHome");
             }
             return View(user);
         }
