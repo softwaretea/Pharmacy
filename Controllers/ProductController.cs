@@ -185,14 +185,21 @@ namespace PahramcyOnline.Controllers
         {
             var Product = from p in db.products
                           select p;
-            if (!String.IsNullOrEmpty(search))
+            if(search == "Tablets" || search == "Capsule" || search == "Syrup" || search == "vial" || search == "Ampoule" || search == "Suppository" || search == "Effervescent")
+            {
+                Product = db.products.Where(p => p.pro_type.Equals(search));
+                return View(Product.ToList());
+            }
+
+            else 
             {
                 Product = db.products.Where(p => p.pro_TradName.Equals(search));
                 return View(Product.ToList());
             }
 
-            return View(db.products.ToList());
+            
         }
+        
         /*
         [HttpPost]
         public ActionResult Shop(product product)
