@@ -24,7 +24,6 @@ namespace PahramcyOnline.Models
         public double pro_prices { get; set; }
         [Display(Name = "Quantity")]
         [Required]
-        
         [Range(1,100000000,ErrorMessage="Invalid Value")]
         public int pro_quantity { get; set; }
         [Display(Name = "Company")]
