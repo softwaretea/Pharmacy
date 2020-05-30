@@ -3,38 +3,128 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    
+    String AddAtFunction(TimeSpan y)
+    {
+        var x = y.ToString();
+        DateTime z = DateTime.Parse(x);
+        DateTime date1 = DateTime.Now;
+        TimeSpan value = date1.Subtract(z);
+
+        if (value.Days != 00)
+        {
+
+
+
+
+            if (value.Days > 365)
+            {
+                return "add to cart " + Math.Round(value.Days / 365.25) + " Years ago";
+
+            }
+            else
+            {
+                if (value.Days > 30)
+                {
+                    return "add to cart " + Math.Round(value.Days / 30.00) + " Monthes ago";
+
+                }
+                else
+                {
+                    if (value.Days > 7)
+                    {
+                        return "add to cart " + Math.Round(value.Days / 7.00) + " Weaks ago";
+
+                    }
+                    else
+                    {
+
+                        return "add to cart " + Math.Round(value.TotalDays) + " days ago";
+
+
+                    }
+                }
+
+            }
+
+
+
+
+
+
+
+        }
+        else
+        {
+            if (value.Hours != 0)
+            {
+                return "add to cart " + Math.Round(value.TotalSeconds) + " Hours ago";
+
+            }
+            else
+            {
+                if (value.Minutes != 00)
+                {
+                    return "add to cart " + Math.Round(value.TotalMinutes) + " Minutes ago";
+
+                }
+                else
+                {
+                    if (value.Seconds != 00)
+                    {
+                        return "add to cart " + Math.Round(value.TotalSeconds) + " Seconds ago";
+
+                    }
+                    else
+                    {
+
+                        return "add to cart " + Math.Round(value.TotalMilliseconds) + " Milliseconds ago";
+
+
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+   
 }
+<hr />
+<h2>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bills
+</h2>
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
+        <th></th>
         <th>
-            @Html.DisplayNameFor(model => model.sum)
+            User Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.fisrt_name)
+            total price
         </th>
+        
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.sum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.fisrt_name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+<tr>
+    <td></td>
+    <td>
+        @Html.DisplayFor(modelItem => item.User.fisrt_name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.sum)
+    </td>
+    <td>
+        @AddAtFunction(item.added_at)
+    </td>
+
+</tr>
 }
 
 </table>
