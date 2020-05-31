@@ -19,7 +19,7 @@ namespace PahramcyOnline.Controllers
         // GET: products
         public ActionResult Index()
         {
-            if (Session["Email"] != null)
+            if (Session["user_id"] != null)
             {
                 return View(db.products.ToList());
 
@@ -34,7 +34,7 @@ namespace PahramcyOnline.Controllers
         // GET: products/Details/5
         public ActionResult Details(int? id)
         {
-            if (Session["Email"] == null)
+            if (Session["admin_id"] == null)
             {
                 return RedirectToAction("Index", "Home");
 
@@ -55,7 +55,8 @@ namespace PahramcyOnline.Controllers
         // GET: products/Create
         public ActionResult Create()
         {
-            if (Session["Email"] != null)
+
+            if (Session["admin_id"] != null)
             {
 
                 return View();
@@ -75,6 +76,13 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,pro_TradName,pro_prices,pro_quantity,pro_company,pro_pharmacology,pro_type,pro_GenericName,pro_image")] product product,HttpPostedFileBase proImage)
         {
+
+
+            if (Session["admin_id"] == null)
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
             if (ModelState.IsValid)
             {
                 string path="";
@@ -95,11 +103,12 @@ namespace PahramcyOnline.Controllers
         // GET: products/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (Session["Email"] == null)
+
+            if (Session["admin_id"] == null)
             {
                 return RedirectToAction("Index", "Home");
-
             }
+           
             else
            if (id == null)
             {
@@ -120,6 +129,12 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,pro_TradName,pro_prices,pro_quantity,pro_company,pro_pharmacology,pro_type,pro_GenericName,pro_image")] product product, HttpPostedFileBase proImage)
         {
+
+            if (Session["admin_id"] == null)
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
             if (proImage != null)
             {
                 string path = "";
@@ -142,11 +157,13 @@ namespace PahramcyOnline.Controllers
         // GET: products/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (Session["Email"] == null)
-            {
-                return RedirectToAction("Index", "Home");
 
+            if (Session["admin_id"] == null)
+            {
+
+                return RedirectToAction("Index", "Home");
             }
+          
             else
            if (id == null)
             {
@@ -165,6 +182,13 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
+            if (Session["admin_id"] == null)
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
+
             product product = db.products.Find(id);
             db.products.Remove(product);
             db.SaveChanges();
@@ -183,6 +207,12 @@ namespace PahramcyOnline.Controllers
         
         public ActionResult Shop(string search)
         {
+
+            if (Session["admin_id"] != null)
+            {
+
+                return RedirectToAction("Index", "Home");
+            }
             var Product = from p in db.products
                           select p;
             if(search == "Tablets" || search == "Capsule" || search == "Syrup" || search == "vial" || search == "Ampoule" || search == "Suppository" || search == "Effervescent")

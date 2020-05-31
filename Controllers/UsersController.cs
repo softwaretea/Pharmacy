@@ -17,13 +17,22 @@ namespace PahramcyOnline.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
             return View(db.Users.ToList());
         }
         
 
         public ActionResult UserHome()
         {
+            if (Session["user_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
             number();
             return View(); 
         }
@@ -46,6 +55,11 @@ namespace PahramcyOnline.Controllers
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["user_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -103,6 +117,11 @@ namespace PahramcyOnline.Controllers
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["user_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -122,6 +141,11 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id_user,fisrt_name,last_name,email_user,password,address,phone_number,User_Name")] User user)
         {
+            if (Session["user_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
@@ -134,6 +158,11 @@ namespace PahramcyOnline.Controllers
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -151,6 +180,11 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();

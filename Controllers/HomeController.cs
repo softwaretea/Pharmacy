@@ -28,7 +28,6 @@ namespace PahramcyOnline.Controllers
         [HttpGet]
         public ActionResult Login_get()
         {
-            Session["Email"] = "";
 
 
             return View();

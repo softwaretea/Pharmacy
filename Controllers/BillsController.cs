@@ -19,6 +19,11 @@ namespace PahramcyOnline.Controllers
         // GET: Bills
         public ActionResult Index()
         {
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
             var bills = db.Bills.Include(b => b.User);
             return View(bills.ToList());
         }
@@ -30,6 +35,12 @@ namespace PahramcyOnline.Controllers
        
         public ActionResult Create( int id_user, double sum)
         {
+            if (Session["user_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
+
             Bill bill=new Bill();
             bill.id_user = id_user;
             DateTime now = DateTime.Now;
@@ -47,6 +58,11 @@ namespace PahramcyOnline.Controllers
         // GET: Bills/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -64,6 +80,11 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
             Bill bill = db.Bills.Find(id);
             db.Bills.Remove(bill);
             db.SaveChanges();

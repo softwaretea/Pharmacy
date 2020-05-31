@@ -18,7 +18,7 @@ namespace PahramcyOnline.Controllers
         
         public ActionResult AdminHome()
         {
-            if (Session["Email"] == null)
+            if (Session["admin_id"] == null)
             {
                 return RedirectToAction("Index", "Home");
 
@@ -31,7 +31,14 @@ namespace PahramcyOnline.Controllers
         // GET: Admins/Details/5
         public ActionResult Details()
         {
-            var id = Session["admin_id"];
+
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            
+                var id = Session["admin_id"];
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -50,6 +57,11 @@ namespace PahramcyOnline.Controllers
         // GET: Admins/Edit/5
         public ActionResult Edit()
         {
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
             var id = Session["admin_id"];
 
             if (id == null)
@@ -71,6 +83,11 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id_admin,Email_Admin,Password_Admin,First_Name,Last_Name")] Admin admin)
         {
+            if (Session["admin_id"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(admin).State = EntityState.Modified;
@@ -83,6 +100,7 @@ namespace PahramcyOnline.Controllers
       
         protected override void Dispose(bool disposing)
         {
+
             if (disposing)
             {
                 db.Dispose();

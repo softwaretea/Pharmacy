@@ -19,7 +19,11 @@ namespace PahramcyOnline.Controllers
         // GET: Carts
         public ActionResult Index()
         {
+            if (Session["user_id"] == null)
+            {
+                return RedirectToAction("Login", "home");
 
+            }
             var carts = db.Carts.Include(c => c.product).Include(c => c.User);
             var model = db.Carts;
             float x = 0;
@@ -38,6 +42,7 @@ namespace PahramcyOnline.Controllers
        
         public ActionResult Create([Bind(Include = "cart_id,product_id")] Cart cart)
         {
+            
             if (Session["user_id"] != null)
             {
                 var model = db.Carts;
@@ -92,6 +97,11 @@ namespace PahramcyOnline.Controllers
         
         public ActionResult Delete(int id)
         {
+            if (Session["user_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
             Cart cart = db.Carts.Find(id);
             int x = (int)Session["number"];
             x--;
@@ -102,6 +112,11 @@ namespace PahramcyOnline.Controllers
         }
         public ActionResult CartDelete(int id)
         {
+            if (Session["user_id"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+
+            }
             var model = db.Carts;
 
             foreach (var item in model)
