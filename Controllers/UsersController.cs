@@ -108,7 +108,10 @@ namespace PahramcyOnline.Controllers
                     }
                 }
             }
-            return RedirectToAction("Create");
+            if (!ModelState.IsValid)
+                return View();
+
+            return View();
 
 
 
@@ -141,18 +144,27 @@ namespace PahramcyOnline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id_user,fisrt_name,last_name,email_user,password,address,phone_number,User_Name")] User user)
         {
+
+            var obj = db.Users.Where(a => a.User_Name.Equals(user.User_Name)).FirstOrDefault();
+
             if (Session["user_id"] == null)
             {
                 return RedirectToAction("Login", "Home");
 
             }
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid && obj != null)
+            {
+                ViewBag.Message = "Username Not Valid";
+                return View(user);
+            }
+            if (ModelState.IsValid && obj == null)
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("UserHome");
             }
             return View(user);
+
         }
 
         // GET: Users/Delete/5

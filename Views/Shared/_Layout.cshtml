@@ -31,55 +31,61 @@
                     <div class="main-nav d-none d-lg-block">
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
-                                <li ><a href="@Url.Action("Index","home")">Home</a></li>
+                                <li><a href="@Url.Action("Index","home")">Home</a></li>
                                 <li><a href="@Url.Action("Shop", "product")">Store</a></li>
 
 
                                 <li class="has-children">
-                                    <a href="@Url.Action("Index","home")">Categories</a>
+                                    <a href="#">Categories</a>
                                     <ul class="dropdown">
                                         <li class="has-children">
-                                            <a href="#">Tablets</a>
+                                            <br />
                                             <ul class="dropdown">
                                             </ul>
                                         </li>
                                         <li class="has-children">
-                                            <a href="#">Capsule</a>
+                                            <a href="@Url.Action("Shop" , "Product", new { search = "Tablets" })">Tablets</a>
                                             <ul class="dropdown">
                                             </ul>
                                         </li>
                                         <li class="has-children">
-                                            <a href="#">Syrup</a>
+                                            <a href="@Url.Action("Shop" , "Product", new { search = "Capsule" })">Capsule</a>
                                             <ul class="dropdown">
                                             </ul>
                                         </li>
                                         <li class="has-children">
-                                            <a href="#">vial</a>
+                                            <a href="@Url.Action("Shop" , "Product", new { search = "Syrup" })">Syrup</a>
                                             <ul class="dropdown">
                                             </ul>
                                         </li>
                                         <li class="has-children">
-                                            <a href="#">Ampoule</a>
+                                            <a href="@Url.Action("Shop" , "Product", new { search = "vial" })">vial</a>
                                             <ul class="dropdown">
                                             </ul>
                                         </li>
                                         <li class="has-children">
-                                            <a href="#">Suppository</a>
+                                            <a href="@Url.Action("Shop" , "Product", new { search = "Ampoule" })">Ampoule</a>
                                             <ul class="dropdown">
                                             </ul>
                                         </li>
                                         <li class="has-children">
-                                            <a href="#">Effervescent</a>
+                                            <a href="@Url.Action("Shop" , "Product", new { search = "Suppository" })">Suppository</a>
+                                            <ul class="dropdown">
+                                            </ul>
+                                        </li>
+                                        <li class="has-children">
+                                            <a href="@Url.Action("Shop" , "Product", new { search = "Effervescen" })">Effervescen</a>
                                             <ul class="dropdown">
                                             </ul>
                                         </li>
                                     </ul>
+
                                 </li>
 
 
                                 <li><a href="@Url.Action("About","home")">About</a></li>
-                                <li><a href="@Url.Action("Login","home")">Sign in</a></li>
-                                
+                                <li><a href="@Url.Action("Login","home")">Login</a></li>
+
                             </ul>
                         </nav>
                     </div>
@@ -90,7 +96,8 @@
         @RenderBody()
 
 
-        <footer class="site-footer">
+    <footer class="site-footer">
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
@@ -132,7 +139,7 @@
                 </div>
 
             </div>
-        </footer>
+    </footer>
 
     </div>
     @Scripts.Render("~/bundles/jquery")

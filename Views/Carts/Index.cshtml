@@ -45,7 +45,7 @@
                 <hr />
                 <h3 class="text-center"/>the total = @Session["sum"]
                 <br />
-                @Html.ActionLink("Done", "CartDelete", new { id = (int)Session["user_id"] })
+                @Html.ActionLink("Buy", "CartDelete", new { id = (int)Session["user_id"] })
             @*<a href="@Url.Action("Createb","Bills", new { id = (int)Session["user_id"] ,added_at = now,sum = (float)Session["sum"] })" class="btn btn-info px-1 py-1">
                 Done..
                 

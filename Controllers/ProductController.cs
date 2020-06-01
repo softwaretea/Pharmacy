@@ -14,12 +14,12 @@ namespace PahramcyOnline.Controllers
 {
     public class ProductController : Controller
     {
-        private  pharmacyEntities db = new pharmacyEntities();
+        private pharmacyEntities db = new pharmacyEntities();
 
         // GET: products
         public ActionResult Index()
         {
-            if (Session["user_id"] != null)
+            if (Session["admin_id"] != null)
             {
                 return View(db.products.ToList());
 
@@ -27,7 +27,7 @@ namespace PahramcyOnline.Controllers
             else
             {
                 return RedirectToAction("Index", "Home");
-                
+
             }
         }
 
@@ -65,7 +65,7 @@ namespace PahramcyOnline.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+
 
         }
 
@@ -74,7 +74,7 @@ namespace PahramcyOnline.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,pro_TradName,pro_prices,pro_quantity,pro_company,pro_pharmacology,pro_type,pro_GenericName,pro_image")] product product,HttpPostedFileBase proImage)
+        public ActionResult Create([Bind(Include = "Id,pro_TradName,pro_prices,pro_quantity,pro_company,pro_pharmacology,pro_type,pro_GenericName,pro_image")] product product, HttpPostedFileBase proImage)
         {
 
 
@@ -85,8 +85,8 @@ namespace PahramcyOnline.Controllers
             }
             if (ModelState.IsValid)
             {
-                string path="";
-                if(proImage.FileName.Length>0)
+                string path = "";
+                if (proImage.FileName.Length > 0)
                 {
                     path = "~/images/" + Path.GetFileName(proImage.FileName);
                     proImage.SaveAs(Server.MapPath(path));
@@ -108,7 +108,7 @@ namespace PahramcyOnline.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-           
+
             else
            if (id == null)
             {
@@ -145,13 +145,13 @@ namespace PahramcyOnline.Controllers
                 }
                 product.pro_image = path;
             }
-          //  var before = db.products.AsNoTracking().Where(x => x.Id == product.Id).ToList().FirstOrDefault();
+            //  var before = db.products.AsNoTracking().Where(x => x.Id == product.Id).ToList().FirstOrDefault();
 
-            
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            
+
+            db.Entry(product).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
 
         // GET: products/Delete/5
@@ -163,7 +163,7 @@ namespace PahramcyOnline.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
-          
+
             else
            if (id == null)
             {
@@ -203,8 +203,8 @@ namespace PahramcyOnline.Controllers
             }
             base.Dispose(disposing);
         }
-        
-        
+
+
         public ActionResult Shop(string search)
         {
 
@@ -213,32 +213,26 @@ namespace PahramcyOnline.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
-            var Product = from p in db.products
-                          select p;
-            if(search == "Tablets" || search == "Capsule" || search == "Syrup" || search == "vial" || search == "Ampoule" || search == "Suppository" || search == "Effervescent")
+            if (!String.IsNullOrEmpty(search))
             {
-                Product = db.products.Where(p => p.pro_type.Equals(search));
-                return View(Product.ToList());
+                var Product = from p in db.products
+                              select p;
+                if (search == "Tablets" || search == "Capsule" || search == "Syrup" || search == "vial" || search == "Ampoule" || search == "Suppository" || search == "Effervescent")
+                {
+                    Product = db.products.Where(p => p.pro_type.Equals(search));
+                    return View(Product.ToList());
+                }
+
+                else
+                {
+                    Product = db.products.Where(p => p.pro_TradName.Equals(search));
+                    return View(Product.ToList());
+                }
             }
-
-            else 
-            {
-                Product = db.products.Where(p => p.pro_TradName.Equals(search));
-                return View(Product.ToList());
-            }
-
-            
+            else
+                return View(db.products.ToList());
         }
-        
-        /*
-        [HttpPost]
-        public ActionResult Shop(product product)
-        {
 
-
-            return RedirectToAction("Index");
-        }
-        */
     }
 
 }
